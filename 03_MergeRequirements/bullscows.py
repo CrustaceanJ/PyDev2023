@@ -5,9 +5,32 @@ import argparse
 
 from collections import Counter
 from random import choice
+from io import StringIO
+
 
 import requests
 import cowsay
+
+
+FROG_TEMPLATE = cowsay.read_dot_cow(StringIO("""
+$the_cow = <<EOC;
+           $thoughts
+            $thoughts
+           _________
+           .--._.--.
+          ( O     O )
+          /   . .   \\
+         .`._______.'.
+        /(           )\\
+      _/  \  \   /  /  \_
+   .~   `  \  \ /  /  '   ~.
+  {    -.   \  V  /   .-    }
+_ _`.    \  |  |  |  /    .'_ _
+>_       _} |  |  | {_       _<
+ /. - ~ ,_-'  .^.  `-_, ~ - .\\
+         '-'|/   \|`-`
+EOC
+"""))
 
 
 def ask(prompt: str, valid: tp.List[str]) -> str:
@@ -15,9 +38,9 @@ def ask(prompt: str, valid: tp.List[str]) -> str:
     while True:
         if guess is not None:
             prompt_temp =  f'Слова {guess:^9s} нет в словаре.\n' + prompt
-            print(cowsay.cowsay(prompt_temp, cow=cowsay.get_random_cow()))
+            print(cowsay.cowsay(prompt_temp, cowfile=FROG_TEMPLATE))
         else:
-            print(cowsay.cowsay(prompt, cow=cowsay.get_random_cow()))
+             print(cowsay.cowsay(prompt, cowfile=FROG_TEMPLATE))
         guess = input().strip()
         if guess not in valid:
             continue
