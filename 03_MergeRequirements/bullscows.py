@@ -58,7 +58,7 @@ if __name__ == '__main__':
     args = parse_args()
     if os.path.isfile(args.vocab):
         with open(args.vocab, 'r') as f:
-            vocab = [line.strip() for line in f.readlines()]
+            vocab = [line.strip() for line in f]
     else:
         with requests.get(args.vocab) as r:
             vocab = [word.strip() for word in r.text.split()]
