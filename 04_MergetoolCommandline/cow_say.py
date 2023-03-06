@@ -1,3 +1,4 @@
+"""I have MacOS and in python module cmd tab-completion not working. I hope it will be work in other OS."""
 import cmd
 import shlex
 from cowsay import list_cows, THOUGHT_OPTIONS, Bubble, cowsay, cowthink, make_bubble
